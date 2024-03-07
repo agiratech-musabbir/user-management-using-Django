@@ -69,11 +69,11 @@
 {% if error == "no" %}
     <script>
         alert('Registration Successful');
-        window.location = "{% url 'user_login' %}";
+        window.location.href = "/email-sent/";
     </script>
 {% endif %}
 {% if error == "yes" %}
     <script>
-        alert('Something went wrong, Try Again');
+        alert('User already exits!!');
     </script>
 {% endif %}

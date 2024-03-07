@@ -32,5 +32,6 @@ urlpatterns = [
     path('edit_profile/<int:pid>',edit_profile,name='edit_profile'),
     path('delete_user/<int:pid>',delete_user,name='delete_user'),
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
+    path('email-sent/', views.email_sent, name='email_sent'),
     
 ]

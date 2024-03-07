@@ -32,26 +32,38 @@ def registration(request):
         ec=request.POST['empcode']
         em=request.POST['email']
         pwd=request.POST['pwd']
+
+        # Server-side validation
+        
+        # if not all([fn, ln, ec, em, pwd]):
+        #     error = "Please fill in all fields."
+        # elif User.objects.filter(username=em).exists():
+        #     error = "Email address is already registered."
+        # elif len(pwd) < 6:
+        #     error = "Password must be at least 6 characters long."
+        # else:
         try:
             user=User.objects.create_user(first_name=fn,last_name=ln,username=em,password=pwd)
             UserDetail.objects.create(user=user,empcode=ec)
-              # Sending confirmation email
+                # Sending confirmation email
             current_site = get_current_site(request)
             mail_subject = 'Activate your account'
             message = render_to_string('registration_activation_email.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': default_token_generator.make_token(user),
-            })
+                    'user': user,
+                    'domain': current_site.domain,
+                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                    'token': default_token_generator.make_token(user),
+                })
             to_email = em
             email = EmailMessage(mail_subject, message, to=[to_email])
             email.send()
             error="no"
         except:
             error="yes"
+                
         
     return render(request,'registration.html',locals())
+                
 
 def user_login(request):
     error=""
@@ -199,3 +211,7 @@ def activate(request, uidb64, token):
     else:
         # Invalid link
         return render(request, 'activation_fail.html')
+    
+
+def email_sent(request):
+    return render(request, 'email_sent.html')
