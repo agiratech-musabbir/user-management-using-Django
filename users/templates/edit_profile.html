@@ -1,0 +1,87 @@
+{% extends 'user_base.html' %}
+
+{% block main%}
+
+
+
+<div class="card shadow m-2">
+    <div class="card-body">
+       <h5 class="p-2 text-danger" style="border-bottom:2px solid orange;">Edit Profile </h5>
+
+       <div class="container-fluid">
+        <form method="post" name="signup">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="">First Name</label>
+                        <input type="text" name="firstname" class="form-control" placeholder="Enter first Name" pattern="[A-Za-z]+" value="{{users.user.first_name}}">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="">Last Name</label>
+                        <input type="text" name="lastname" class="form-control" placeholder="Enter last Name" pattern="[A-Za-z]+"  value="{{users.user.last_name}}">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="">User ID</label>
+                        <input type="text" name="empcode" class="form-control" placeholder="Enter User Id" pattern="[0-9]+" value="{{users.empcode}}" >
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="">State</label>
+                        <input type="text" name="state" class="form-control" placeholder="State" value="{{ users.state}}">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="">Country</label>
+                        <input type="text" name="country" class="form-control" placeholder="Country" value="{{ users.country}}">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="">Contact</label>
+                        <input type="text" name="contact" class="form-control" placeholder="Contact Number" value="{{ users.contact}}">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="">Email Id</label>
+                        <input type="email" name="email" class="form-control" placeholder="Email id" value="{{ users.user.username}}">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="">Gender</label>
+                        <select name="gender" class="form-control">
+                            <option value="None">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+           
+            <input type="submit" value="submit" class="m-2 px-3 btn btn-primary">
+        </form>
+       </div>
+    </div>
+</div>
+
+{% if error == "no" %}
+    <script>
+        alert('User Profile has been  updated!!!');
+        window.location = "{% url 'edit_profile' users.id%}";
+    </script>
+{% endif %}
+{% if error == "yes" %}
+    <script>
+        alert('Something went wrong, Try Again');
+    </script>
+{% endif %}
+
+{% endblock%}
