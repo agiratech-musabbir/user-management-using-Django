@@ -140,4 +140,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'danishafroz38@gmail.com'  # Your Gmail email address
-EMAIL_HOST_PASSWORD = 'dsrk mdao mjxf cvku'  # Your Gmail email password or app password if you have 2-factor authentication enabled
+EMAIL_HOST_PASSWORD = 'zqrb jeph afod yhla'  # Your Gmail email password or app password if you have 2-factor authentication enabled

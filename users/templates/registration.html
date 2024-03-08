@@ -11,6 +11,30 @@
         return true;
 
     }
+        function validatePassword() {
+            var pwd = document.getElementById("pwd").value;
+            var cpwd = document.getElementById("cpwd").value;
+    
+            var pwdRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})/;
+            
+            if (!pwdRegex.test(pwd)) {
+                document.getElementById("pwd-error").innerHTML = "Password should contain at least 6 characters including one special character and one alphanumeric character.";
+                return false;
+            } else {
+                document.getElementById("pwd-error").innerHTML = "";
+            }
+    
+            if (pwd !== cpwd) {
+                document.getElementById("cpwd-error").innerHTML = "Passwords do not match.";
+                return false;
+            } else {
+                document.getElementById("cpwd-error").innerHTML = "";
+            }
+    
+            return true;
+        }
+  
+
 </script>
 
 
@@ -19,7 +43,7 @@
        <h5 class="p-2 text-danger" style="border-bottom:2px solid orange;">Create an Account</h5>
 
        <div class="container-fluid">
-        <form method="post" name="signup" onsubmit="return checkpassword()">
+        <form method="post" name="signup" onsubmit="return validatePassword()">
             {% csrf_token %}
             <div class="form-row">
                 <div class="col-sm-6">
@@ -49,13 +73,15 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="">Password</label>
-                        <input type="password" name="pwd" class="form-control" placeholder="Enter Password" required>
+                        <input type="password" name="pwd" id="pwd" class="form-control" placeholder="Enter Password" required>
+                        <span id="pwd-error" style="color:red;"></span>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="">Confirm Password</label>
-                        <input type="password" name="cpwd" class="form-control" placeholder="Enter Password again" required>
+                        <input type="password" name="cpwd" id="cpwd" class="form-control" placeholder="Enter Password again" required>
+                        <span id="cpwd-error" style="color:red;"></span>
                     </div>
                 </div>
             </div>
@@ -77,3 +103,4 @@
         alert('User already exits!!');
     </script>
 {% endif %}
+
