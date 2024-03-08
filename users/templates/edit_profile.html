@@ -1,7 +1,19 @@
 {% extends 'user_base.html' %}
 
 {% block main%}
+<script>
+    document.getElementById('contact').addEventListener('input', function () {
+        var contactInput = document.getElementById('contact');
+        var contactError = document.getElementById('contactError');
+        var contact = contactInput.value.trim();
 
+        if (contact.length !== 10 || !/^\d{10}$/.test(contact)) {
+            contactError.textContent = 'Please enter a valid 10-digit phone number.';
+        } else {
+            contactError.textContent = '';
+        }
+    });
+</script>
 
 
 <div class="card shadow m-2">
@@ -45,7 +57,7 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="">Contact</label>
-                        <input type="text" name="contact" class="form-control" placeholder="Contact Number" value="{{ users.contact}}">
+                        <input type="text" name="contact" class="form-control" placeholder="Contact Number" pattern="^\+?\d{0,10}$" title="Contact number must be  10 digits" value="{{ users.contact}}">
                     </div>
                 </div>
                 <div class="col-sm-6">

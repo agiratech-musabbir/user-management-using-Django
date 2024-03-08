@@ -37,15 +37,21 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="form-group">
-                        <label for="">Country</label>
-                        <input type="text" name="country" class="form-control" placeholder="Country" value="{{ users.country}}">
-                    </div>
+                    <label for="country">Country [{{ users.country}}]</label>
+                    <select name="country" id="country" class="form-control">
+                        <option value="">Select Country</option>
+                        <option value="India ">India </option>
+                        <option value="Afghanistan ">Afghanistan </option>
+                        <option value="Albania ">Albania </option>
+                        <option value="Algeria ">Algeria </option>
+                        <!-- Add more countries as needed -->
+                    </select>
                 </div>
+              
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="">Contact</label>
-                        <input type="text" name="contact" class="form-control" placeholder="Contact Number" value="{{ users.contact}}">
+                        <input type="text" name="contact" class="form-control" placeholder="Contact Number" pattern="^\+?\d{0,10}$" title="Contact number must be  10 digits" value="{{ users.contact}}">
                     </div>
                 </div>
                 <div class="col-sm-6">
